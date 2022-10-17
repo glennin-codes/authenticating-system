@@ -3,7 +3,7 @@ const app =express();
 import cors from 'cors';
 import dotenv from "dotenv";
 import errHandandler from "./middleware/errHandler.js";
-
+import connectDB from "./db/connect.js";
 
 
 
@@ -17,6 +17,12 @@ app.get('/',(req,res)=>{
     res.send(' welcom to codding');
 })
 app.use(errHandandler);
-app .listen(port, ()=>{
-    console.log(`running on ${port}`);
-})
+
+//using the mongo url in async function in addition listening for the port after a database has been created
+const start=async()=>{
+    await connectDB(process.env.MONGO_URL);
+    app.listen(port,()=>{
+        console.log(`running on ${port}`);
+    })
+}
+start()
