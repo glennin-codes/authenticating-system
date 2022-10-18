@@ -18,11 +18,16 @@ app.get('/',(req,res)=>{
 })
 app.use(errHandandler);
 
+
 //using the mongo url in async function in addition listening for the port after a database has been created
 const start=async()=>{
-    await connectDB(process.env.MONGO_URL);
-    app.listen(port,()=>{
-        console.log(`running on ${port}`);
-    })
+   try{
+     await connectDB(process.env.MONGO_URI) 
+     app.listen(port,()=>{
+        console.log(`listening on ${port}...`);
+     })
+   }catch(err){
+      console.error(err);
+   }
 }
-start()
+start();
