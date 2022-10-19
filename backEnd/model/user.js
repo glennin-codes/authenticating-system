@@ -4,35 +4,35 @@ import passwordComplexity from "joi-password-complexity";
 
 const UserSchema= new mongoose.Schema({
     Firstname:{
-        type:string,
+        type:String,
         required:true,
     },
     Lastname:{
-        type:string,
+        type:String,
         required:true,
     },
     email:{
-        type:string,
+        type:String,
         required:true,
     },
     password:{
-        type:string,
+        type:String,
         required:true,
 
     },
     
 })
-const users=mongoose.model('users',UserSchema);
+const Users = mongoose.model('users',UserSchema);
 
 //validation
 const validate =(data)=>{
     const schema =joi.object({
         Firstname: joi.string().required().label('Firstname'),
         Lastname : joi.string().required().label('Lastname'),
-        email    : joi.string().email().required().label('email'),
+        email   : joi.string().email().required().label('Email'),
         password : passwordComplexity().required().label('password')
     })
       return schema.validate(data);
 }
 
-export default {users,validate}
+export default {Users,validate};
