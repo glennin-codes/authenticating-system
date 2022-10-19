@@ -4,7 +4,7 @@ import cors from 'cors';
 import dotenv from "dotenv";
 import errHandandler from "./middleware/errHandler.js";
 import connectDB from "./db/connect.js";
-
+import authRoutes from "./router/index.js"
 
 
 
@@ -13,6 +13,10 @@ app.use(cors());
 app.use(express.urlencoded({extended:false}));
 app.use(express.json());
 const port=process.env.PORT || 5003;
+
+
+
+app.use('/api/validation',authRoutes)
 app.get('/',(req,res)=>{
     res.send(' welcom to codding');
 })
