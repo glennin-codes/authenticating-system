@@ -25,8 +25,5 @@ const register= async(req,res)=>{
 
  
 
-const login =async(req,res)=>{
-  res.send("hi")
-}
-export default {register, login}
+export default register;
 

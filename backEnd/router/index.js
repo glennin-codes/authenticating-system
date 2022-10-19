@@ -1,9 +1,10 @@
 import express from "express";
 const routers =express.Router();
-import controllers from "../controllers/index.js" ;
+import register from "../controllers/registerController.js" ;
+import  login from "../controllers/loginController.js" ;
 
 
-routers.route('/register').post( controllers.register);
-routers.route('/login').post(controllers.login)
+routers.route('/register').post( register);
+routers.route('/login').post(login)
 
 export default routers;
